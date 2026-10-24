@@ -62,7 +62,7 @@ useEffect(() => {
   };
 
   getClientSecret();
-}, [basket]);
+}, [basket, getBasketTotal]);
 
 
   console.log("The secret is => ", clientSecret);
@@ -71,7 +71,7 @@ useEffect(() => {
     e.preventDefault();
     setProcessing(true);
 
-    const payload = await stripe
+    await stripe
       .confirmCardPayment(clientSecret, {
         payment_method: { card: elements.getElement(CardElement) },
       })
